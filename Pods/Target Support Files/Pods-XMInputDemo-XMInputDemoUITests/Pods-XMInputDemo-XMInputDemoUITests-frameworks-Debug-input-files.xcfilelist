@@ -1,0 +1,4 @@
+${PODS_ROOT}/Target Support Files/Pods-XMInputDemo-XMInputDemoUITests/Pods-XMInputDemo-XMInputDemoUITests-frameworks.sh
+${BUILT_PRODUCTS_DIR}/YYCategories/YYCategories.framework
+${BUILT_PRODUCTS_DIR}/YYImage/YYImage.framework
+${BUILT_PRODUCTS_DIR}/YYText/YYText.framework

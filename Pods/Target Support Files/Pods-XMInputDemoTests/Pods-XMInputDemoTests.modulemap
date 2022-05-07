@@ -1,0 +1,6 @@
+framework module Pods_XMInputDemoTests {
+  umbrella header "Pods-XMInputDemoTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
