@@ -48,6 +48,7 @@ typedef NS_ENUM(NSUInteger, InputStatus) {
 - (instancetype)init {
     if (self = [super init]) {
         self.showInputBar = YES;
+        self.showAtBtn = YES;
     }
     return self;
 }
@@ -65,10 +66,28 @@ typedef NS_ENUM(NSUInteger, InputStatus) {
     XMInputBar *inputBar = [[XMInputBar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, kInputBar_Height)];
     inputBar.delegate = self;
     inputBar.atColor = kColorFromRGB(0x5991E0);
+    inputBar.atButton.hidden = !self.showAtBtn;
     [self.view addSubview:inputBar];
     self.inputBar = inputBar;
     
     [XMConfig defaultConfig];
+}
+
+- (void)startInput {
+    [self.inputBar startInput];
+}
+
+- (void)startInputAtToId:(NSString *)toId name:(NSString *)name {
+    [self.inputBar startInputAtToId:toId name:name];
+}
+
+- (void)inputAtByAppendingName:(NSString *)name uid:(NSString *)uid {
+    [self.inputBar inputAtByAppendingName:name uid:uid];
+}
+
+- (void)setPlaceholderText:(NSString *)placeholderText {
+    _placeholderText = placeholderText;
+    self.inputBar.placeholderText = placeholderText;
 }
 
 #pragma mark - 输入键盘的改变通知

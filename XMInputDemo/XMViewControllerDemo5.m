@@ -60,7 +60,7 @@
             [self presentViewController:vc animated:YES completion:nil];
             __weak typeof(self) weakSelf = self;
             vc.getAtUser = ^(NSString * _Nonnull name, NSString * _Nonnull uid) {
-                [weakSelf.inputController.inputBar inputAtByAppendingName:name uid:uid];
+                [weakSelf.inputController inputAtByAppendingName:name uid:uid];
             };
             break;
         }
@@ -89,7 +89,7 @@
 }
 
 - (void)btnClick {
-    [self.inputController.inputBar startInput];
+    [self.inputController startInput];
 }
 
 @end

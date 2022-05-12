@@ -29,7 +29,7 @@
     NSMutableArray *faceGroups = [NSMutableArray array];
     // emoji group
     NSMutableArray *emojiFaces = [NSMutableArray array];
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"emoji" ofType:@"plist"];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"xmEmoji" ofType:@"plist"];
     NSArray *emojis = [NSArray arrayWithContentsOfFile:path];
     for (NSDictionary *dic in emojis) {
         XMFaceCellData *data = [[XMFaceCellData alloc] init];

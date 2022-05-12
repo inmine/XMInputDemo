@@ -18,21 +18,21 @@
     return self;
 }
 
-- (UIResponder *)nextResponder {
-    if(_overrideNextResponder == nil){
-        return [super nextResponder];
-    }else{
-        return _overrideNextResponder;
-    }
-}
-
-- (BOOL)canPerformAction:(SEL)action withSender:(id)sender {
-    if (_overrideNextResponder != nil) {
-        return NO;
-    } else {
-        return [super canPerformAction:action withSender:sender];
-    }
-}
+//- (UIResponder *)nextResponder {
+//    if(_overrideNextResponder == nil){
+//        return [super nextResponder];
+//    }else{
+//        return _overrideNextResponder;
+//    }
+//}
+//
+//- (BOOL)canPerformAction:(SEL)action withSender:(id)sender {
+//    if (_overrideNextResponder != nil) {
+//        return NO;
+//    } else {
+//        return [super canPerformAction:action withSender:sender];
+//    }
+//}
 
 - (NSString *)message {
     NSString *text = [self getStrContentInRange:NSMakeRange(0, self.attributedText.length)];

@@ -73,6 +73,37 @@ typedef NS_ENUM(NSInteger, XMInputFunctionState) {
  */
 @property (nonatomic, assign) BOOL showInputBar;
 
+/**
+ * 是否显示at在输入框上
+ * 默认显示:YES
+ */
+@property (nonatomic, assign) BOOL showAtBtn;
+
+/**
+ * 占位文字
+ */
+@property (nonatomic, copy) NSString *placeholderText;
+
+/**
+ *  开始输入
+ *  重新开始初始化
+ */
+- (void)startInput;
+
+/**
+ *  开始输入直接at
+ *  重新开始初始化
+ *  name : 用户昵称。
+ *  uid :  用户id。
+ */
+- (void)startInputAtToId:(NSString *)toId name:(NSString *)name;
+
+/**
+ *  添加at
+ *  name : 用户昵称。
+ *  uid :  用户id。
+ */
+- (void)inputAtByAppendingName:(NSString *)name uid:(NSString *)uid;
 
 @end
 

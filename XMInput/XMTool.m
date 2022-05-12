@@ -6,15 +6,16 @@
 //
 
 #import "XMTool.h"
+#import "XMConfig.h"
 
 @implementation XMTool
+
 /**
 * 获取字符串中多个相同字符的位置index
 */
 + (NSMutableArray *)getRangeStr:(NSString *)text findText:(NSString *)findText {
     NSMutableArray *arrayRanges = [NSMutableArray arrayWithCapacity:3];
-    if (findText == nil && [findText isEqualToString:@""])
-    {
+    if (findText == nil && [findText isEqualToString:@""]){
         return nil;
     }
     
@@ -49,6 +50,48 @@
         return arrayRanges;
     }
     return nil;
+}
+
+// 解析emoji
++ (NSMutableAttributedString *)parserEmojiWithMessage:(NSString *)message font:(UIFont *)font color:(UIColor *)color lineHeight:(CGFloat)lineHeight {
+    NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc] initWithString:message];
+    NSString *regEmj  = @"\\[[a-zA-Z0-9\\/\\u4e00-\\u9fa5]+\\]";
+    NSError *error    = nil;
+    NSRegularExpression *expression = [NSRegularExpression regularExpressionWithPattern:regEmj options:NSRegularExpressionCaseInsensitive error:&error];
+    if (!expression) {
+        NSLog(@"%@",error);
+    }
+    NSMutableParagraphStyle *npgStyle = [[NSMutableParagraphStyle alloc] init];
+    npgStyle.paragraphSpacing = 0; // 段与段的距离
+    npgStyle.lineSpacing = 0;
+    [attributeStr addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, attributeStr.length)];
+    [attributeStr addAttribute:NSParagraphStyleAttributeName value:npgStyle range:NSMakeRange(0, attributeStr.length)];
+    
+    NSArray *resultArray = [expression matchesInString:message options:0 range:NSMakeRange(0, message.length)];
+    NSMutableArray *mutableArray = [NSMutableArray arrayWithCapacity:resultArray.count];
+    for (NSTextCheckingResult *match in resultArray) {
+        NSRange range    = match.range;
+        NSString *subStr = [message substringWithRange:range];
+        XMFaceGroup *faceGroup = [[XMConfig defaultConfig].faceGroups firstObject];
+        for (XMFaceCellData *face in faceGroup.faces) {
+            if ([face.name isEqualToString:subStr]) {
+                NSTextAttachment *attach   = [[NSTextAttachment alloc] init];
+                attach.image               = [UIImage imageNamed:face.name];
+                attach.bounds              = CGRectMake(0, -4, lineHeight, lineHeight);
+                NSAttributedString *imgStr = [NSAttributedString attributedStringWithAttachment:attach];
+                NSMutableDictionary *imagDic   = [NSMutableDictionary dictionaryWithCapacity:2];
+                [imagDic setObject:imgStr forKey:@"image"];
+                [imagDic setObject:[NSValue valueWithRange:range] forKey:@"range"];
+                [mutableArray addObject:imagDic];
+            }
+        }
+    }
+    for (int i =(int) mutableArray.count - 1; i >= 0; i --) {
+        NSRange range;
+        [mutableArray[i][@"range"] getValue:&range];
+        [attributeStr replaceCharactersInRange:range withAttributedString:mutableArray[i][@"image"]];
+    }
+    return attributeStr;
 }
 
 @end

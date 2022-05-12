@@ -667,8 +667,10 @@
     }
     NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithAttributedString:self.inputTextView.attributedText];
     NSRange newSelectRange = NSMakeRange(self.selectedRange.location + attributedString.length, 0);
-    [attString insertAttributedString:attributedString atIndex:self.selectedRange.location];
+    [attString replaceCharactersInRange:self.selectedRange withAttributedString:attributedString];
+//    [attString insertAttributedString:attributedString atIndex:self.selectedRange.location];
     self.inputTextView.attributedText = attString;
+    [self.inputTextView setNeedsLayout];
     [self.inputTextView layoutIfNeeded];
     self.inputTextView.selectedRange = newSelectRange;
     [self textViewDidChange:self.inputTextView];
@@ -712,7 +714,6 @@
         self.inputTextView.selectedRange = newSelectRange;
         [self textViewDidChange:self.inputTextView];
         self.inputTextView.font = self.textViewFont;
-        self.inputTextView.textColor = self.textViewColor;
     }
 }
 

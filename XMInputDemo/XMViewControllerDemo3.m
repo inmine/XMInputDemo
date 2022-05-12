@@ -38,7 +38,7 @@
     XMInputController *inputController = [[XMInputController alloc] init];
     inputController.delegate = self;
     inputController.view.frame = CGRectMake(0, self.view.frame.size.height - kInputBar_Height - kBottom_SafeHeight, self.view.frame.size.width, kInputBar_Height + kBottom_SafeHeight);
-    inputController.inputBar.atButton.hidden = YES;
+    inputController.showAtBtn = NO;
     [self addChildViewController:inputController];
     [self.view addSubview:inputController.view];
     self.inputController = inputController;
@@ -46,10 +46,7 @@
 
 #pragma mark - XMInputControllerDelegate
 - (void)inputController:(XMInputController *)inputController didChangeHeight:(CGFloat)height {
-    __weak typeof(self) weakSelf = self;
-    [UIView animateWithDuration:0.15f delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-        [weakSelf updateInputHeight:height];
-    } completion:^(BOOL finished) {}];
+    [self updateInputHeight:height];
 }
 
 - (void)inputController:(XMInputController *)inputController didSelectFunctionType:(XMInputFunctionState)type atArray:(NSArray *)atArray message:(NSString *)message {
@@ -60,7 +57,7 @@
             [self presentViewController:vc animated:YES completion:nil];
             __weak typeof(self) weakSelf = self;
             vc.getAtUser = ^(NSString * _Nonnull name, NSString * _Nonnull uid) {
-                [weakSelf.inputController.inputBar inputAtByAppendingName:name uid:uid];
+                [weakSelf.inputController inputAtByAppendingName:name uid:uid];
             };
             break;
         }
@@ -74,10 +71,12 @@
 }
 
 - (void)updateInputHeight:(CGFloat)height {
-    CGRect inputFrame = self.inputController.view.frame;
-    inputFrame.origin.y = self.view.frame.size.height - height;
-    inputFrame.size.height = height;
-    self.inputController.view.frame = inputFrame;
+    [UIView animateWithDuration:0.15f delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        CGRect inputFrame = self.inputController.view.frame;
+        inputFrame.origin.y = self.view.frame.size.height - height;
+        inputFrame.size.height = height;
+        self.inputController.view.frame = inputFrame;
+    } completion:^(BOOL finished) {}];
 }
 
 - (void)keybordBtnClick {
@@ -85,7 +84,7 @@
 }
 
 - (void)btnClick {
-    [self.inputController.inputBar startInputAtToId:@"9527" name:@"luffy"];
+    [self.inputController startInputAtToId:@"9527" name:@"luffy"];
 }
 
 @end

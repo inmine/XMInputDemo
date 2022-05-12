@@ -73,7 +73,6 @@
 		96AFC9382823826000A6B441 /* [毛线]@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96AFC8C02823825F00A6B441 /* [毛线]@2x.png */; };
 		96AFC9392823826000A6B441 /* [爆竹]@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96AFC8C12823825F00A6B441 /* [爆竹]@2x.png */; };
 		96AFC93A2823826000A6B441 /* [圣诞树]@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96AFC8C22823825F00A6B441 /* [圣诞树]@2x.png */; };
-		96AFC93B2823826000A6B441 /* emoji.plist in Resources */ = {isa = PBXBuildFile; fileRef = 96AFC8C32823825F00A6B441 /* emoji.plist */; };
 		96AFC93C2823826000A6B441 /* [吐舌]@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96AFC8C42823825F00A6B441 /* [吐舌]@2x.png */; };
 		96AFC93D2823826000A6B441 /* [滑冰]@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96AFC8C52823825F00A6B441 /* [滑冰]@2x.png */; };
 		96AFC93E2823826000A6B441 /* [排球]@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96AFC8C62823825F00A6B441 /* [排球]@2x.png */; };
@@ -153,6 +152,8 @@
 		96C4234428265BB60015AFDB /* XMViewControllerDemo4.m in Sources */ = {isa = PBXBuildFile; fileRef = 96C4234328265BB60015AFDB /* XMViewControllerDemo4.m */; };
 		96C4234728265EFF0015AFDB /* XMViewControllerDemo5.m in Sources */ = {isa = PBXBuildFile; fileRef = 96C4234628265EFF0015AFDB /* XMViewControllerDemo5.m */; };
 		96C4234A282667610015AFDB /* XMTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 96C42349282667610015AFDB /* XMTextView.m */; };
+		96C59064282A8B6200CBC68D /* xmEmoji.plist in Resources */ = {isa = PBXBuildFile; fileRef = 96C59063282A8B6200CBC68D /* xmEmoji.plist */; };
+		96C59066282A8B9A00CBC68D /* ic_emoji_delete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96C59065282A8B9A00CBC68D /* ic_emoji_delete@2x.png */; };
 		96E561F32824B9E1004D2399 /* XMInputAtCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E561F22824B9E1004D2399 /* XMInputAtCache.m */; };
 		96E561F62824B9FB004D2399 /* XMInputAtItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E561F52824B9FB004D2399 /* XMInputAtItem.m */; };
 		96E561F92824C102004D2399 /* XMAtListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E561F82824C102004D2399 /* XMAtListViewController.m */; };
@@ -260,7 +261,6 @@
 		96AFC8C02823825F00A6B441 /* [毛线]@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "[毛线]@2x.png"; sourceTree = "<group>"; };
 		96AFC8C12823825F00A6B441 /* [爆竹]@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "[爆竹]@2x.png"; sourceTree = "<group>"; };
 		96AFC8C22823825F00A6B441 /* [圣诞树]@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "[圣诞树]@2x.png"; sourceTree = "<group>"; };
-		96AFC8C32823825F00A6B441 /* emoji.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = emoji.plist; sourceTree = "<group>"; };
 		96AFC8C42823825F00A6B441 /* [吐舌]@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "[吐舌]@2x.png"; sourceTree = "<group>"; };
 		96AFC8C52823825F00A6B441 /* [滑冰]@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "[滑冰]@2x.png"; sourceTree = "<group>"; };
 		96AFC8C62823825F00A6B441 /* [排球]@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "[排球]@2x.png"; sourceTree = "<group>"; };
@@ -348,6 +348,8 @@
 		96C4234628265EFF0015AFDB /* XMViewControllerDemo5.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XMViewControllerDemo5.m; sourceTree = "<group>"; };
 		96C42348282667610015AFDB /* XMTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMTextView.h; sourceTree = "<group>"; };
 		96C42349282667610015AFDB /* XMTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XMTextView.m; sourceTree = "<group>"; };
+		96C59063282A8B6200CBC68D /* xmEmoji.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = xmEmoji.plist; sourceTree = "<group>"; };
+		96C59065282A8B9A00CBC68D /* ic_emoji_delete@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_emoji_delete@2x.png"; sourceTree = "<group>"; };
 		96E561F12824B9E1004D2399 /* XMInputAtCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMInputAtCache.h; sourceTree = "<group>"; };
 		96E561F22824B9E1004D2399 /* XMInputAtCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XMInputAtCache.m; sourceTree = "<group>"; };
 		96E561F42824B9FB004D2399 /* XMInputAtItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMInputAtItem.h; sourceTree = "<group>"; };
@@ -505,7 +507,8 @@
 		96AFC8922823825F00A6B441 /* Emoji */ = {
 			isa = PBXGroup;
 			children = (
-				96AFC8C32823825F00A6B441 /* emoji.plist */,
+				96C59063282A8B6200CBC68D /* xmEmoji.plist */,
+				96C59065282A8B9A00CBC68D /* ic_emoji_delete@2x.png */,
 				96AFC8932823825F00A6B441 /* [好吃]@2x.png */,
 				96AFC8942823825F00A6B441 /* [足球]@2x.png */,
 				96AFC8952823825F00A6B441 /* [入场券]@2x.png */,
@@ -811,7 +814,6 @@
 				96AFC856282360AA00A6B441 /* Assets.xcassets in Resources */,
 				96AFC9512823826000A6B441 /* [害怕]@2x.png in Resources */,
 				96AFC97E2823826000A6B441 /* [微笑的猫]@2x.png in Resources */,
-				96AFC93B2823826000A6B441 /* emoji.plist in Resources */,
 				96AFC9162823826000A6B441 /* [大小王]@2x.png in Resources */,
 				96AFC91C2823826000A6B441 /* [龇牙咧嘴]@2x.png in Resources */,
 				96AFC9132823826000A6B441 /* [墨镜笑脸]@2x.png in Resources */,
@@ -842,10 +844,12 @@
 				96AFC9752823826000A6B441 /* [奖杯]@2x.png in Resources */,
 				96AFC97B2823826000A6B441 /* [叹气]@2x.png in Resources */,
 				96AFC96D2823826000A6B441 /* [泰迪熊]@2x.png in Resources */,
+				96C59066282A8B9A00CBC68D /* ic_emoji_delete@2x.png in Resources */,
 				96AFC93D2823826000A6B441 /* [滑冰]@2x.png in Resources */,
 				96AFC95E2823826000A6B441 /* [垒球]@2x.png in Resources */,
 				96AFC9342823826000A6B441 /* [笑哭了]@2x.png in Resources */,
 				96AFC9242823826000A6B441 /* [水晶球]@2x.png in Resources */,
+				96C59064282A8B6200CBC68D /* xmEmoji.plist in Resources */,
 				96AFC9742823826000A6B441 /* [无语]@2x.png in Resources */,
 				96AFC9482823826000A6B441 /* [保龄球]@2x.png in Resources */,
 				96AFC9792823826000A6B441 /* [亲亲]@2x.png in Resources */,
