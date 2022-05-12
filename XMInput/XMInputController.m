@@ -90,6 +90,17 @@ typedef NS_ENUM(NSUInteger, InputStatus) {
     self.inputBar.placeholderText = placeholderText;
 }
 
+- (void)endInput {
+    [self.inputBar endInput];
+    if (_delegate && [_delegate respondsToSelector:@selector(inputController:didChangeHeight:)]){
+        if (self.showInputBar) {
+            [_delegate inputController:self didChangeHeight:_inputBar.frame.size.height + kBottom_SafeHeight];
+        } else {
+            [_delegate inputController:self didChangeHeight:0];
+        }
+    }
+}
+
 #pragma mark - 输入键盘的改变通知
 - (void)keyboardWillShow:(NSNotification *)notification {
     _status = Input_Status_Input_Keyboard;

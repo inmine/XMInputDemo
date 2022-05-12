@@ -42,7 +42,6 @@
     UICollectionView *faceCollectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:faceFlowLayout];
     faceCollectionView.frame = self.bounds;
     faceCollectionView.collectionViewLayout = faceFlowLayout;
-    faceCollectionView.pagingEnabled = YES;
     faceCollectionView.delegate = self;
     faceCollectionView.dataSource = self;
     faceCollectionView.showsHorizontalScrollIndicator = NO;

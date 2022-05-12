@@ -197,6 +197,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)startInputAtToId:(NSString *)toId name:(NSString *)name;
 
+/**
+ *  结束输入
+ */
+- (void)endInput;
+
 @end
 
 

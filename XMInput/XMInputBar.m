@@ -85,10 +85,8 @@
     [inputTextView.layer setMasksToBounds:YES];
     [inputTextView setReturnKeyType:UIReturnKeySend];
     inputTextView.backgroundColor = [UIColor clearColor];
-    inputTextView.scrollEnabled = NO;
     inputTextView.font = self.textViewFont;
     inputTextView.textColor = self.textViewColor;
-    inputTextView.layoutManager.allowsNonContiguousLayout = NO;
     inputTextView.textContainerInset = UIEdgeInsetsMake(9, 10, 9, 10);
     [self addSubview:inputTextView];
     self.inputTextView = inputTextView;
@@ -155,11 +153,6 @@
     CGSize size = [_inputTextView sizeThatFits:CGSizeMake(_inputTextView.frame.size.width, kTextView_TextView_Height_Max)];
     CGFloat oldHeight = _inputTextView.frame.size.height;
     CGFloat newHeight = size.height;
-    if (newHeight >= kTextView_TextView_Height_Max) {
-        self.inputTextView.scrollEnabled = YES;
-    }else{
-        self.inputTextView.scrollEnabled = NO;
-    }
     if(newHeight > kTextView_TextView_Height_Max){
         newHeight = kTextView_TextView_Height_Max;
     }

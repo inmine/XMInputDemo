@@ -21,13 +21,6 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    UIButton *keybordBtn = [[UIButton alloc] init];
-    [keybordBtn setTitle:@"键盘退下" forState:UIControlStateNormal];
-    [keybordBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-    [keybordBtn addTarget:self action:@selector(keybordBtnClick) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *rightBarBtn = [[UIBarButtonItem alloc] initWithCustomView:keybordBtn];
-    self.navigationItem.rightBarButtonItems = @[rightBarBtn];
-    
     XMInputController *inputController = [[XMInputController alloc] init];
     inputController.delegate = self;
     inputController.view.frame = CGRectMake(0, self.view.frame.size.height - kInputBar_Height - kBottom_SafeHeight, self.view.frame.size.width, kInputBar_Height + kBottom_SafeHeight);
@@ -56,6 +49,8 @@
         }
         case XMInputFunctionSend: {
             NSLog(@"==>message:%@  atArray:%@",message,atArray);
+            self.contentLabel.attributedText = [XMTool parserEmojiWithMessage:message font:self.contentLabel.font color:self.contentLabel.textColor lineHeight:17];
+            [self.inputController endInput];
             break;
         }
         default:
@@ -72,8 +67,5 @@
     } completion:^(BOOL finished) {}];
 }
 
-- (void)keybordBtnClick {
-    [self.view endEditing:YES];
-}
 
 @end

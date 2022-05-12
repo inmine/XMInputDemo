@@ -12,6 +12,7 @@
 		9630E7BF28239EEE008DBEBE /* XMFaceCellData.m in Sources */ = {isa = PBXBuildFile; fileRef = 9630E7BE28239EEE008DBEBE /* XMFaceCellData.m */; };
 		9630E7C22823A2D1008DBEBE /* XMFaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9630E7C12823A2D1008DBEBE /* XMFaceView.m */; };
 		9630E7C52823A702008DBEBE /* XMFaceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9630E7C42823A702008DBEBE /* XMFaceCell.m */; };
+		96491F79282D03B600A53ED4 /* XMBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96491F78282D03B600A53ED4 /* XMBaseViewController.m */; };
 		96AFC84B282360A800A6B441 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 96AFC84A282360A800A6B441 /* AppDelegate.m */; };
 		96AFC851282360A800A6B441 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96AFC850282360A800A6B441 /* ViewController.m */; };
 		96AFC854282360A800A6B441 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96AFC852282360A800A6B441 /* Main.storyboard */; };
@@ -189,6 +190,8 @@
 		9630E7C12823A2D1008DBEBE /* XMFaceView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XMFaceView.m; sourceTree = "<group>"; };
 		9630E7C32823A702008DBEBE /* XMFaceCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMFaceCell.h; sourceTree = "<group>"; };
 		9630E7C42823A702008DBEBE /* XMFaceCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XMFaceCell.m; sourceTree = "<group>"; };
+		96491F77282D03B600A53ED4 /* XMBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMBaseViewController.h; sourceTree = "<group>"; };
+		96491F78282D03B600A53ED4 /* XMBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XMBaseViewController.m; sourceTree = "<group>"; };
 		96AFC846282360A800A6B441 /* XMInputDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XMInputDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96AFC849282360A800A6B441 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		96AFC84A282360A800A6B441 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -433,6 +436,8 @@
 				96AFC84A282360A800A6B441 /* AppDelegate.m */,
 				96AFC84F282360A800A6B441 /* ViewController.h */,
 				96AFC850282360A800A6B441 /* ViewController.m */,
+				96491F77282D03B600A53ED4 /* XMBaseViewController.h */,
+				96491F78282D03B600A53ED4 /* XMBaseViewController.m */,
 				96C42339282659690015AFDB /* XMViewControllerDemo1.h */,
 				96C4233A282659690015AFDB /* XMViewControllerDemo1.m */,
 				96C4233C282659720015AFDB /* XMViewControllerDemo2.h */,
@@ -985,6 +990,7 @@
 				96AFC88A2823666F00A6B441 /* XMConfig.m in Sources */,
 				9630E7BF28239EEE008DBEBE /* XMFaceCellData.m in Sources */,
 				96C4234128265BAE0015AFDB /* XMViewControllerDemo3.m in Sources */,
+				96491F79282D03B600A53ED4 /* XMBaseViewController.m in Sources */,
 				96C4233E282659720015AFDB /* XMViewControllerDemo2.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

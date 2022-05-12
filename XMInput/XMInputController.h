@@ -105,6 +105,11 @@ typedef NS_ENUM(NSInteger, XMInputFunctionState) {
  */
 - (void)inputAtByAppendingName:(NSString *)name uid:(NSString *)uid;
 
+/**
+ *  结束输入
+ */
+- (void)endInput;
+
 @end
 
 NS_ASSUME_NONNULL_END

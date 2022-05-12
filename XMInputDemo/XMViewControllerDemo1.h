@@ -6,10 +6,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "XMBaseViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface XMViewControllerDemo1 : UIViewController
+@interface XMViewControllerDemo1 : XMBaseViewController
 
 @end
 
