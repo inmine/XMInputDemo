@@ -40,6 +40,7 @@
         data.path = name;
         [emojiFaces addObject:data];
         [self.emojiCache setObject:data forKey:data.name];
+        
     }
     if(emojiFaces.count != 0){
         XMFaceGroup *emojiGroup = [[XMFaceGroup alloc] init];
@@ -53,6 +54,13 @@
         [faceGroups addObject:emojiGroup];
     }
     self.faceGroups = faceGroups;
+    
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        for (XMFaceCellData *data in emojiFaces) {
+            UIImage *emojiImage = [UIImage imageNamed:data.name];
+            [self.emojiImageCache setObject:emojiImage forKey:data.name];
+        }
+    });
 }
 
 #pragma mark - 懒加载
@@ -61,6 +69,13 @@
         _emojiCache = [[NSCache alloc] init];
     }
     return _emojiCache;
+}
+
+- (NSCache *)emojiImageCache {
+    if (!_emojiImageCache) {
+        _emojiImageCache = [[NSCache alloc] init];
+    }
+    return _emojiImageCache;
 }
 
 @end

@@ -6,6 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "XMFaceGroup.h"
 #import "XMFaceCellData.h"
 
@@ -53,6 +54,11 @@ alpha:1.0]
  * 表情cache
  */
 @property (nonatomic, strong) NSCache *emojiCache;
+
+/**
+ * 表情ImageCache
+ */
+@property (nonatomic, strong) NSCache *emojiImageCache;
 
 @end
 

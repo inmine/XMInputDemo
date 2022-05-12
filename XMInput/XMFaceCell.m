@@ -6,6 +6,7 @@
 //
 
 #import "XMFaceCell.h"
+#import "XMConfig.h"
 
 @implementation XMFaceCell
 
@@ -24,8 +25,19 @@
 }
 
 - (void)setData:(XMFaceCellData *)data {
-    UIImage *image = [UIImage imageNamed:data.name];
-    self.face.image = image;
+    
+    UIImage *image = [[XMConfig defaultConfig].emojiImageCache objectForKey:data.name];
+    if (image) {
+        self.face.image = image;
+    } else {
+        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+            UIImage *image = [UIImage imageNamed:data.name];
+            [[XMConfig defaultConfig].emojiImageCache setObject:image forKey:data.name];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.face.image = image;
+            });
+        });
+    }
 }
 
 - (void)layoutSubviews {
