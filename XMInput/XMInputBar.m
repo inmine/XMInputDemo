@@ -81,6 +81,7 @@
 
     XMTextView *inputTextView = [[XMTextView alloc] init];
     inputTextView.delegate = self;
+    inputTextView.enablesReturnKeyAutomatically = YES;
     inputTextView.layer.cornerRadius = 8;
     [inputTextView.layer setMasksToBounds:YES];
     [inputTextView setReturnKeyType:UIReturnKeySend];
@@ -151,6 +152,13 @@
     }
     [self updateInputStatus];
     CGSize size = [_inputTextView sizeThatFits:CGSizeMake(_inputTextView.frame.size.width, kTextView_TextView_Height_Max)];
+//    NSMutableDictionary *attrs = [NSMutableDictionary dictionary];
+//    attrs[NSFontAttributeName] = self.textViewFont;
+//    CGSize maxSize = CGSizeMake((_inputTextView.frame.size.width - 2*10), MAXFLOAT);
+//    CGSize size =  [textView.text boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attrs context:nil].size;
+    
+    NSLog(@"==>size:%@",NSStringFromCGSize(size));
+    
     CGFloat oldHeight = _inputTextView.frame.size.height;
     CGFloat newHeight = size.height;
     if(newHeight > kTextView_TextView_Height_Max){
@@ -165,13 +173,13 @@
     if ((newHeight - oldHeight <4&&  newHeight - oldHeight>0)|| (oldHeight -  newHeight < 4 && oldHeight -  newHeight > 0)) {
         return;
     }
-    
-    __weak typeof(self) weakSelf = self;
-    [UIView animateWithDuration:0.3 animations:^{
-        CGRect textFrame = weakSelf.inputTextView.frame;
+    [UIView animateWithDuration:0.15f animations:^{
+        CGRect textFrame = self.inputTextView.frame;
         textFrame.size.height += newHeight - oldHeight;
-        weakSelf.inputTextView.frame = textFrame;
-        [weakSelf layoutButton:newHeight + 2 * kInputBar_VertMargin];
+        self.inputTextView.frame = textFrame;
+        [self layoutButton:newHeight + 2 * kInputBar_VertMargin];
+    } completion:^(BOOL finished) {
+        [self.inputTextView scrollRectToVisible:CGRectMake(0, 0, self.inputTextView.frame.size.width, self.inputTextView.frame.size.height) animated:NO];
     }];
 }
 
@@ -206,6 +214,7 @@
     }
     
     [self updateInputStatus];
+    
     return YES;
 }
 
@@ -661,7 +670,6 @@
     NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithAttributedString:self.inputTextView.attributedText];
     NSRange newSelectRange = NSMakeRange(self.selectedRange.location + attributedString.length, 0);
     [attString replaceCharactersInRange:self.selectedRange withAttributedString:attributedString];
-//    [attString insertAttributedString:attributedString atIndex:self.selectedRange.location];
     self.inputTextView.attributedText = attString;
     [self.inputTextView setNeedsLayout];
     [self.inputTextView layoutIfNeeded];

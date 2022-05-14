@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface XMTextView : UITextView
 
-//@property (nonatomic, weak) UIResponder *overrideNextResponder;
+@property (nonatomic, weak) UIResponder *overrideNextResponder;
 
 /**
  * message(将emoji转换后的text)

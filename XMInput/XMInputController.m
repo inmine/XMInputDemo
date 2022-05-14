@@ -61,6 +61,7 @@ typedef NS_ENUM(NSUInteger, InputStatus) {
 - (void)setupViews {
     self.view.backgroundColor = [UIColor whiteColor];
     self.view.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
+    self.automaticallyAdjustsScrollViewInsets = NO;
     _status = Input_Status_Input;
 
     XMInputBar *inputBar = [[XMInputBar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, kInputBar_Height)];
@@ -120,7 +121,6 @@ typedef NS_ENUM(NSUInteger, InputStatus) {
 }
 
 - (void)keyboardWillChangeFrame:(NSNotification *)notification {
-    // 因为回调的先后顺序  如果非直播的私信列表 回调则在keyboard 即将变化的时候 进行回调
     CGRect keyboardFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
 //    NSLog(@"==>size:%@  height:%lf",NSStringFromCGSize(keyboardFrame.size),_inputBar.frame.size.height);
     if (keyboardFrame.size.width != kScreen_Width) return;
@@ -129,7 +129,7 @@ typedef NS_ENUM(NSUInteger, InputStatus) {
     }
 }
 
-#pragma mark - KGInputBarDelegate
+#pragma mark - InputBarDelegate
 - (void)inputBarDidTouchFace:(XMInputBar *)textView {
     if([XMConfig defaultConfig].faceGroups.count == 0){
         return;
