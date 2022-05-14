@@ -9,6 +9,7 @@
 #import "XMInput.h"
 #import "XMTextView.h"
 #import "XMInputAtCache.h"
+#import "NIMGrowingTextView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -74,7 +75,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  即在输入条中占据大部分面积文本输入框
  *  继承自 UITextView
  */
-@property (nonatomic, strong) XMTextView *inputTextView;
+@property (nonatomic, strong) NIMGrowingTextView *inputTextView;
 
 /**
  *  表情按钮

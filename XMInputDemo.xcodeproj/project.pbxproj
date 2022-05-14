@@ -13,6 +13,8 @@
 		9630E7C22823A2D1008DBEBE /* XMFaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9630E7C12823A2D1008DBEBE /* XMFaceView.m */; };
 		9630E7C52823A702008DBEBE /* XMFaceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9630E7C42823A702008DBEBE /* XMFaceCell.m */; };
 		96491F79282D03B600A53ED4 /* XMBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96491F78282D03B600A53ED4 /* XMBaseViewController.m */; };
+		967ADC9C282F8F440008992E /* NIMGrowingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 967ADC98282F8F440008992E /* NIMGrowingTextView.m */; };
+		967ADC9D282F8F440008992E /* NIMGrowingInternalTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 967ADC9B282F8F440008992E /* NIMGrowingInternalTextView.m */; };
 		96AFC84B282360A800A6B441 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 96AFC84A282360A800A6B441 /* AppDelegate.m */; };
 		96AFC851282360A800A6B441 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96AFC850282360A800A6B441 /* ViewController.m */; };
 		96AFC854282360A800A6B441 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96AFC852282360A800A6B441 /* Main.storyboard */; };
@@ -192,6 +194,10 @@
 		9630E7C42823A702008DBEBE /* XMFaceCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XMFaceCell.m; sourceTree = "<group>"; };
 		96491F77282D03B600A53ED4 /* XMBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMBaseViewController.h; sourceTree = "<group>"; };
 		96491F78282D03B600A53ED4 /* XMBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XMBaseViewController.m; sourceTree = "<group>"; };
+		967ADC98282F8F440008992E /* NIMGrowingTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIMGrowingTextView.m; sourceTree = "<group>"; };
+		967ADC99282F8F440008992E /* NIMGrowingTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIMGrowingTextView.h; sourceTree = "<group>"; };
+		967ADC9A282F8F440008992E /* NIMGrowingInternalTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIMGrowingInternalTextView.h; sourceTree = "<group>"; };
+		967ADC9B282F8F440008992E /* NIMGrowingInternalTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIMGrowingInternalTextView.m; sourceTree = "<group>"; };
 		96AFC846282360A800A6B441 /* XMInputDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XMInputDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96AFC849282360A800A6B441 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		96AFC84A282360A800A6B441 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -505,6 +511,10 @@
 				96E561F52824B9FB004D2399 /* XMInputAtItem.m */,
 				96B9D7382824FB5C001231D9 /* XMEmojiTextAttachment.h */,
 				96B9D7392824FB5C001231D9 /* XMEmojiTextAttachment.m */,
+				967ADC9A282F8F440008992E /* NIMGrowingInternalTextView.h */,
+				967ADC9B282F8F440008992E /* NIMGrowingInternalTextView.m */,
+				967ADC99282F8F440008992E /* NIMGrowingTextView.h */,
+				967ADC98282F8F440008992E /* NIMGrowingTextView.m */,
 			);
 			path = XMInput;
 			sourceTree = SOURCE_ROOT;
@@ -977,6 +987,7 @@
 				96B9D73A2824FB5C001231D9 /* XMEmojiTextAttachment.m in Sources */,
 				9630E7C52823A702008DBEBE /* XMFaceCell.m in Sources */,
 				96AFC851282360A800A6B441 /* ViewController.m in Sources */,
+				967ADC9C282F8F440008992E /* NIMGrowingTextView.m in Sources */,
 				96AFC84B282360A800A6B441 /* AppDelegate.m in Sources */,
 				96C4234A282667610015AFDB /* XMTextView.m in Sources */,
 				96AFC881282360E200A6B441 /* XMInputBar.m in Sources */,
@@ -990,6 +1001,7 @@
 				96AFC88A2823666F00A6B441 /* XMConfig.m in Sources */,
 				9630E7BF28239EEE008DBEBE /* XMFaceCellData.m in Sources */,
 				96C4234128265BAE0015AFDB /* XMViewControllerDemo3.m in Sources */,
+				967ADC9D282F8F440008992E /* NIMGrowingInternalTextView.m in Sources */,
 				96491F79282D03B600A53ED4 /* XMBaseViewController.m in Sources */,
 				96C4233E282659720015AFDB /* XMViewControllerDemo2.m in Sources */,
 			);
