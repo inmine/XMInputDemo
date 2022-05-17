@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, weak) UIResponder *overrideNextResponder;
 
+@property (nonatomic, strong) NSAttributedString *placeholderAttributedText;
+
 /**
  * message(将emoji转换后的text)
  */

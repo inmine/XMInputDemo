@@ -160,6 +160,7 @@
 		96E561F32824B9E1004D2399 /* XMInputAtCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E561F22824B9E1004D2399 /* XMInputAtCache.m */; };
 		96E561F62824B9FB004D2399 /* XMInputAtItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E561F52824B9FB004D2399 /* XMInputAtItem.m */; };
 		96E561F92824C102004D2399 /* XMAtListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E561F82824C102004D2399 /* XMAtListViewController.m */; };
+		96F809BC2833B461007976E1 /* XMGrowingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F809BB2833B461007976E1 /* XMGrowingTextView.m */; };
 		CBF864BC90DF4D779660FDAB /* Pods_XMInputDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 888AA212783F3FE484889C29 /* Pods_XMInputDemo.framework */; };
 /* End PBXBuildFile section */
 
@@ -365,6 +366,8 @@
 		96E561F52824B9FB004D2399 /* XMInputAtItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XMInputAtItem.m; sourceTree = "<group>"; };
 		96E561F72824C102004D2399 /* XMAtListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMAtListViewController.h; sourceTree = "<group>"; };
 		96E561F82824C102004D2399 /* XMAtListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XMAtListViewController.m; sourceTree = "<group>"; };
+		96F809BA2833B461007976E1 /* XMGrowingTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMGrowingTextView.h; sourceTree = "<group>"; };
+		96F809BB2833B461007976E1 /* XMGrowingTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XMGrowingTextView.m; sourceTree = "<group>"; };
 		A048A9698348F61880534324 /* Pods-XMInputDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XMInputDemoTests.debug.xcconfig"; path = "Target Support Files/Pods-XMInputDemoTests/Pods-XMInputDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F398FCA9A46107006747541E /* Pods-XMInputDemo-XMInputDemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XMInputDemo-XMInputDemoUITests.debug.xcconfig"; path = "Target Support Files/Pods-XMInputDemo-XMInputDemoUITests/Pods-XMInputDemo-XMInputDemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F634B7887C0C95DA418C0D08 /* Pods-XMInputDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XMInputDemoTests.release.xcconfig"; path = "Target Support Files/Pods-XMInputDemoTests/Pods-XMInputDemoTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -491,6 +494,8 @@
 				96AFC880282360E200A6B441 /* XMInputBar.m */,
 				96AFC8852823617A00A6B441 /* XMInputController.h */,
 				96AFC8862823617A00A6B441 /* XMInputController.m */,
+				96F809BA2833B461007976E1 /* XMGrowingTextView.h */,
+				96F809BB2833B461007976E1 /* XMGrowingTextView.m */,
 				96C42348282667610015AFDB /* XMTextView.h */,
 				96C42349282667610015AFDB /* XMTextView.m */,
 				96AFC8882823666F00A6B441 /* XMConfig.h */,
@@ -988,6 +993,7 @@
 				9630E7C52823A702008DBEBE /* XMFaceCell.m in Sources */,
 				96AFC851282360A800A6B441 /* ViewController.m in Sources */,
 				967ADC9C282F8F440008992E /* NIMGrowingTextView.m in Sources */,
+				96F809BC2833B461007976E1 /* XMGrowingTextView.m in Sources */,
 				96AFC84B282360A800A6B441 /* AppDelegate.m in Sources */,
 				96C4234A282667610015AFDB /* XMTextView.m in Sources */,
 				96AFC881282360E200A6B441 /* XMInputBar.m in Sources */,

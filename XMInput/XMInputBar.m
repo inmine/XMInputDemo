@@ -7,7 +7,7 @@
 
 #import "XMInputBar.h"
 
-@interface XMInputBar ()<UITextViewDelegate, NIMGrowingTextViewDelegate>
+@interface XMInputBar ()<UITextViewDelegate, XMGrowingTextViewDelegate>
 
 @property (nonatomic, weak) UIView *lineView;
 @property (nonatomic, weak) UIView *boxView;
@@ -92,15 +92,16 @@
 //    [self addSubview:inputTextView];
 //    self.inputTextView = inputTextView;
     
-    NIMGrowingTextView *inputTextView = [[NIMGrowingTextView alloc] init];
+    XMGrowingTextView *inputTextView = [[XMGrowingTextView alloc] init];
     inputTextView.font = self.textViewFont;
     inputTextView.returnKeyType = UIReturnKeySend;
-    inputTextView.textViewDelegate = self;
+    inputTextView.delegate = self;
     inputTextView.textColor = self.textViewColor;
     inputTextView.textView.enablesReturnKeyAutomatically = YES;
     inputTextView.textContainerInset = UIEdgeInsetsMake(9, 10, 9, 10);
     inputTextView.maxNumberOfLines = 3;
     inputTextView.backgroundColor = [UIColor clearColor];
+    inputTextView.backgroundColor = [[UIColor greenColor] colorWithAlphaComponent:0.3];
     [self addSubview:inputTextView];
     self.inputTextView = inputTextView;
 }
@@ -122,7 +123,7 @@
     } else {
         self.inputTextView.frame = CGRectMake(self.boxView.frame.origin.x, self.boxView.frame.origin.y, self.boxView.frame.size.width - 2*buttonSize.width - 4, self.boxView.frame.size.height);
     }
-    self.placeholderLabel.frame = CGRectMake(self.inputTextView.frame.origin.x + self.inputTextView.textContainerInset.left + 5, self.inputTextView.frame.origin.y + self.inputTextView.textContainerInset.top - 1, self.inputTextView.frame.size.width - self.inputTextView.textContainerInset.left - self.inputTextView.textContainerInset.right, self.inputTextView.frame.size.height - self.inputTextView.textContainerInset.top - self.inputTextView.textContainerInset.bottom);
+    self.placeholderLabel.frame = CGRectMake(self.inputTextView.frame.origin.x + self.inputTextView.textContainerInset.left + 2, self.inputTextView.frame.origin.y + self.inputTextView.textContainerInset.top - 1, self.inputTextView.frame.size.width - self.inputTextView.textContainerInset.left - self.inputTextView.textContainerInset.right, self.inputTextView.frame.size.height - self.inputTextView.textContainerInset.top - self.inputTextView.textContainerInset.bottom);
 }
 
 #pragma mark - set
@@ -146,7 +147,9 @@
     self.placeholderLabel.text = placeholderText;
 }
 
-- (void)textViewDidBeginEditing:(NIMGrowingTextView *)growingTextView {
+#pragma mark - XMGrowingTextViewDelegate
+- (void)xm_textViewDidBeginEditing:(XMGrowingTextView *)textView {
+    self.inputTextView.text = textView.text;
     if (!self.keyboardButton.hidden) {
         if(self.delegate && [self.delegate respondsToSelector:@selector(inputBarDidTouchKeyboard:)]){
             [self.delegate inputBarDidTouchKeyboard:self];
@@ -157,15 +160,15 @@
     [self updateInputStatus];
 }
 
-- (void)textViewDidChange:(NIMGrowingTextView *)growingTextView {
-    if(growingTextView.text.length > kTextView_TextView_Input_Count_Max) {
-        growingTextView.text = [growingTextView.text substringToIndex:kTextView_TextView_Input_Count_Max];
+- (void)xm_textViewDidChange:(XMGrowingTextView *)textView {
+    if(textView.text.length > kTextView_TextView_Input_Count_Max) {
+        textView.text = [textView.text substringToIndex:kTextView_TextView_Input_Count_Max];
     }
     [self updateInputStatus];
 }
 
-- (BOOL)shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)replacementText {
-    if([replacementText isEqualToString:@"\n"]){
+- (BOOL)xm_textView:(XMGrowingTextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    if([text isEqualToString:@"\n"]){
         if (self.delegate && [self.delegate respondsToSelector:@selector(inputBar:didSendText:)]) {
             [self.delegate inputBar:self didSendText:self.inputTextView.textView.message];
             [self clearInput];
@@ -174,17 +177,17 @@
     }
     
     // 删除
-    if ([replacementText isEqualToString:@""]) {
+    if ([text isEqualToString:@""]) {
         return [self deleteTextRange:range];
     }
     
     // 对输入文字字数限制
-    if ((self.contentText.length + replacementText.length) > self.inputTextMaxCount) {
+    if ((self.contentText.length + text.length) > self.inputTextMaxCount) {
         return NO;
     }
     
     // 输入@
-    if ([replacementText isEqualToString:XMInputAtStartChar] && (range.length == 0)) {
+    if ([text isEqualToString:XMInputAtStartChar] && (range.length == 0)) {
         self.isInputAt = YES;
         if (!self.atButton.hidden) {
             if (self.delegate && [self.delegate respondsToSelector:@selector(inputBarDidTouchAt:)]) {
@@ -199,9 +202,8 @@
     return YES;
 }
 
-- (void)didChangeHeight:(CGFloat)height {
-    NSLog(@"==>height:%lf",height);
-//    CGFloat oldHeight = _inputTextView.frame.size.height;
+- (void)xm_didChangeHeight:(CGFloat)height {
+    NSLog(@"==>height:%lf   %lf",height,self.inputTextView.frame.size.height);
     CGFloat newHeight = height;
     if(newHeight > kTextView_TextView_Height_Max){
         newHeight = kTextView_TextView_Height_Max;
@@ -209,19 +211,16 @@
     if(newHeight < kTextView_TextView_Height_Min){
         newHeight = kTextView_TextView_Height_Min;
     }
-//    if(oldHeight == newHeight){
-//        return;
-//    }
-//    if ((newHeight - oldHeight <4&&  newHeight - oldHeight>0)|| (oldHeight -  newHeight < 4 && oldHeight -  newHeight > 0)) {
-//        return;
-//    }
+    CGRect textFrame = self.inputTextView.frame;
+    textFrame.size.height = newHeight;
+    self.inputTextView.frame = textFrame;
     [UIView animateWithDuration:0.15f animations:^{
-//        CGRect textFrame = self.inputTextView.frame;
-//        textFrame.size.height += newHeight - oldHeight;
-//        self.inputTextView.frame = textFrame;
         [self layoutButton:newHeight + 2 * kInputBar_VertMargin];
     } completion:^(BOOL finished) {
         [self.inputTextView.textView scrollRectToVisible:CGRectMake(0, 0, self.inputTextView.frame.size.width, self.inputTextView.frame.size.height) animated:NO];
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//            [self scrollToBottomAnimated:NO];
+//        });
     }];
 }
 
@@ -310,7 +309,7 @@
 //}
 
 // 光标
-- (void)textViewDidChangeSelection:(UITextView *)textView {
+- (void)xm_textViewDidChangeSelection:(XMGrowingTextView *)textView {
     NSRange selectedRange = textView.selectedRange;
     NSString *content = self.contentText;
     
@@ -453,9 +452,9 @@
 
 // 发送
 - (void)clickSendBtn:(UIButton *)sender {
-//    if (self.delegate && [self.delegate respondsToSelector:@selector(inputBar:didSendText:)]) {
-//        [self.delegate inputBar:self didSendText:self.inputTextView.message];
-//    }
+    if (self.delegate && [self.delegate respondsToSelector:@selector(inputBar:didSendText:)]) {
+        [self.delegate inputBar:self didSendText:self.inputTextView.textView.message];
+    }
     [self clearInput];
 }
 
@@ -468,11 +467,21 @@
     [self inputAtByAppendingName:name uid:toId];
 }
 
+- (void)endInput {
+    [self clearInput];
+}
+
 - (void)clearInput {
     [self.atCache clean];
     self.inputTextView.text = @"";
-    [self textViewDidChange:self.inputTextView];
+    [self xm_textViewDidChange:self.inputTextView];
     [self.inputTextView resignFirstResponder];
+}
+
+- (void)scrollToBottomAnimated:(BOOL)animated {
+    CGPoint off = self.inputTextView.textView.contentOffset;
+    off.y = self.inputTextView.textView.contentSize.height - self.inputTextView.textView.bounds.size.height + self.inputTextView.textView.contentInset.bottom;
+    [self.inputTextView.textView setContentOffset:off animated:animated];
 }
 
 - (void)addEmoji:(NSString *)emoji {
@@ -762,10 +771,10 @@
     NSRange newSelectRange = NSMakeRange(self.selectedRange.location + attributedString.length, 0);
     [attString replaceCharactersInRange:self.selectedRange withAttributedString:attributedString];
     self.inputTextView.attributedText = attString;
-    [self.inputTextView setNeedsLayout];
-    [self.inputTextView layoutIfNeeded];
+//    [self.inputTextView setNeedsLayout];
+//    [self.inputTextView layoutIfNeeded];
     self.inputTextView.selectedRange = newSelectRange;
-    [self textViewDidChange:self.inputTextView];
+    [self xm_textViewDidChange:self.inputTextView];
     [self inputTextScrollView];
 }
 
@@ -804,7 +813,7 @@
         [attString replaceCharactersInRange:range withString:@""];
         self.inputTextView.attributedText = attString;
         self.inputTextView.selectedRange = newSelectRange;
-        [self textViewDidChange:self.inputTextView];
+        [self xm_textViewDidChange:self.inputTextView];
         self.inputTextView.font = self.textViewFont;
     }
 }

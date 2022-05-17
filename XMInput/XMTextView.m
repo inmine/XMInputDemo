@@ -9,11 +9,25 @@
 #import "XMConfig.h"
 #import "XMEmojiTextAttachment.h"
 
+@interface XMTextView()
+
+@property (nonatomic,assign) BOOL displayPlaceholder;
+
+@end
+
 @implementation XMTextView
 
-- (instancetype)init {
-    if (self = [super init]) {
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (instancetype)initWithFrame:(CGRect)frame textContainer:(NSTextContainer *)textContainer {
+    self = [super initWithFrame:frame textContainer:textContainer];
+    if (self) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textDidChangeNotification:) name:UITextViewTextDidChangeNotification object:self];
+
         self.lineHeight = 20;
+        self.displayPlaceholder = YES;
     }
     return self;
 }
@@ -153,5 +167,66 @@
     self.attributedText = [mulAttriString copy];
     self.selectedRange = NSMakeRange(range.location + attriString.length, 0);
 }
+
+- (void)setText:(NSString *)text {
+    [super setText:text];
+    
+    if ([self.delegate respondsToSelector:@selector(textViewDidChange:)]) {
+        [self.delegate textViewDidChange:self];
+    }
+    
+    [self updatePlaceholder];
+}
+
+- (void)setSelectedRange:(NSRange)selectedRange {
+    [super setSelectedRange:selectedRange];
+    [self scrollRangeToVisible:NSMakeRange(self.selectedRange.location, 0)];
+}
+
+- (BOOL)canBecomeFirstResponder {
+    return YES;
+}
+
+- (void)setPlaceholderAttributedText:(NSAttributedString *)placeholderAttributedText {
+    _placeholderAttributedText = placeholderAttributedText;
+    [self setNeedsDisplay];
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    [self setNeedsDisplay];
+}
+
+#pragma mark - Private
+- (void)setDisplayPlaceholder:(BOOL)displayPlaceholder {
+    BOOL oldValue = _displayPlaceholder;
+    _displayPlaceholder = displayPlaceholder;
+    if (oldValue != self.displayPlaceholder) {
+        [self setNeedsDisplay];
+    }
+}
+
+- (void)updatePlaceholder {
+    self.displayPlaceholder = self.text.length == 0;
+}
+
+- (void)textDidChangeNotification:(NSNotification *)notification {
+    [self updatePlaceholder];
+}
+
+//- (void)drawRect:(CGRect)rect {
+//    [super drawRect:rect];
+//    if (!self.displayPlaceholder) {
+//        return;
+//    }
+//    
+//    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+//    paragraphStyle.alignment = self.textAlignment;
+//    
+//    CGRect targetRect = CGRectMake(3, self.contentInset.top, self.frame.size.width - self.contentInset.left, self.frame.size.height - self.contentInset.top);
+//    
+//    NSAttributedString *attributedString = self.placeholderAttributedText;
+//    [attributedString drawInRect:targetRect];
+//}
 
 @end
