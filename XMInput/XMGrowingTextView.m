@@ -283,13 +283,13 @@
 
 @implementation XMGrowingTextView(TextView)
 
-- (NSAttributedString *)placeholderAttributedText {
-    return self.textView.placeholderAttributedText;
-}
-
-- (void)setPlaceholderAttributedText:(NSAttributedString *)placeholderAttributedText {
-    [self.textView setPlaceholderAttributedText:placeholderAttributedText];
-}
+//- (NSAttributedString *)placeholderAttributedText {
+//    return self.textView.placeholderAttributedText;
+//}
+//
+//- (void)setPlaceholderAttributedText:(NSAttributedString *)placeholderAttributedText {
+//    [self.textView setPlaceholderAttributedText:placeholderAttributedText];
+//}
 
 // MARK: TextView
 - (NSString *)text

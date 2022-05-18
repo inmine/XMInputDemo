@@ -11,7 +11,7 @@
 
 @interface XMTextView()
 
-@property (nonatomic,assign) BOOL displayPlaceholder;
+//@property (nonatomic,assign) BOOL displayPlaceholder;
 
 @end
 
@@ -24,10 +24,10 @@
 - (instancetype)initWithFrame:(CGRect)frame textContainer:(NSTextContainer *)textContainer {
     self = [super initWithFrame:frame textContainer:textContainer];
     if (self) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textDidChangeNotification:) name:UITextViewTextDidChangeNotification object:self];
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textDidChangeNotification:) name:UITextViewTextDidChangeNotification object:self];
 
         self.lineHeight = 20;
-        self.displayPlaceholder = YES;
+//        self.displayPlaceholder = YES;
     }
     return self;
 }
@@ -168,51 +168,51 @@
     self.selectedRange = NSMakeRange(range.location + attriString.length, 0);
 }
 
-- (void)setText:(NSString *)text {
-    [super setText:text];
-    
-    if ([self.delegate respondsToSelector:@selector(textViewDidChange:)]) {
-        [self.delegate textViewDidChange:self];
-    }
-    
-    [self updatePlaceholder];
-}
+//- (void)setText:(NSString *)text {
+//    [super setText:text];
+//
+//    if ([self.delegate respondsToSelector:@selector(textViewDidChange:)]) {
+//        [self.delegate textViewDidChange:self];
+//    }
+//
+////    [self updatePlaceholder];
+//}
 
-- (void)setSelectedRange:(NSRange)selectedRange {
-    [super setSelectedRange:selectedRange];
-    [self scrollRangeToVisible:NSMakeRange(self.selectedRange.location, 0)];
-}
+//- (void)setSelectedRange:(NSRange)selectedRange {
+//    [super setSelectedRange:selectedRange];
+//    [self scrollRangeToVisible:NSMakeRange(self.selectedRange.location, 0)];
+//}
+//
+//- (BOOL)canBecomeFirstResponder {
+//    return YES;
+//}
 
-- (BOOL)canBecomeFirstResponder {
-    return YES;
-}
+//- (void)setPlaceholderAttributedText:(NSAttributedString *)placeholderAttributedText {
+//    _placeholderAttributedText = placeholderAttributedText;
+//    [self setNeedsDisplay];
+//}
 
-- (void)setPlaceholderAttributedText:(NSAttributedString *)placeholderAttributedText {
-    _placeholderAttributedText = placeholderAttributedText;
-    [self setNeedsDisplay];
-}
+//- (void)layoutSubviews {
+//    [super layoutSubviews];
+//    [self setNeedsDisplay];
+//}
 
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    [self setNeedsDisplay];
-}
-
-#pragma mark - Private
-- (void)setDisplayPlaceholder:(BOOL)displayPlaceholder {
-    BOOL oldValue = _displayPlaceholder;
-    _displayPlaceholder = displayPlaceholder;
-    if (oldValue != self.displayPlaceholder) {
-        [self setNeedsDisplay];
-    }
-}
-
-- (void)updatePlaceholder {
-    self.displayPlaceholder = self.text.length == 0;
-}
-
-- (void)textDidChangeNotification:(NSNotification *)notification {
-    [self updatePlaceholder];
-}
+//#pragma mark - Private
+//- (void)setDisplayPlaceholder:(BOOL)displayPlaceholder {
+//    BOOL oldValue = _displayPlaceholder;
+//    _displayPlaceholder = displayPlaceholder;
+//    if (oldValue != self.displayPlaceholder) {
+//        [self setNeedsDisplay];
+//    }
+//}
+//
+//- (void)updatePlaceholder {
+//    self.displayPlaceholder = self.text.length == 0;
+//}
+//
+//- (void)textDidChangeNotification:(NSNotification *)notification {
+//    [self updatePlaceholder];
+//}
 
 //- (void)drawRect:(CGRect)rect {
 //    [super drawRect:rect];

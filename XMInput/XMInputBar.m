@@ -7,7 +7,7 @@
 
 #import "XMInputBar.h"
 
-@interface XMInputBar ()<UITextViewDelegate, XMGrowingTextViewDelegate>
+@interface XMInputBar ()<XMGrowingTextViewDelegate>
 
 @property (nonatomic, weak) UIView *lineView;
 @property (nonatomic, weak) UIView *boxView;
@@ -78,20 +78,6 @@
     placeholderLabel.userInteractionEnabled = NO;
     [self addSubview:placeholderLabel];
     self.placeholderLabel = placeholderLabel;
-
-//    XMTextView *inputTextView = [[XMTextView alloc] init];
-//    inputTextView.delegate = self;
-//    inputTextView.enablesReturnKeyAutomatically = YES;
-//    inputTextView.layer.cornerRadius = 8;
-//    [inputTextView.layer setMasksToBounds:YES];
-//    [inputTextView setReturnKeyType:UIReturnKeySend];
-//    inputTextView.backgroundColor = [UIColor clearColor];
-//    inputTextView.font = self.textViewFont;
-//    inputTextView.textColor = self.textViewColor;
-//    inputTextView.textContainerInset = UIEdgeInsetsMake(9, 10, 9, 10);
-//    [self addSubview:inputTextView];
-//    self.inputTextView = inputTextView;
-    
     XMGrowingTextView *inputTextView = [[XMGrowingTextView alloc] init];
     inputTextView.font = self.textViewFont;
     inputTextView.returnKeyType = UIReturnKeySend;
@@ -124,6 +110,7 @@
         self.inputTextView.frame = CGRectMake(self.boxView.frame.origin.x, self.boxView.frame.origin.y, self.boxView.frame.size.width - 2*buttonSize.width - 4, self.boxView.frame.size.height);
     }
     self.placeholderLabel.frame = CGRectMake(self.inputTextView.frame.origin.x + self.inputTextView.textContainerInset.left + 2, self.inputTextView.frame.origin.y + self.inputTextView.textContainerInset.top - 1, self.inputTextView.frame.size.width - self.inputTextView.textContainerInset.left - self.inputTextView.textContainerInset.right, self.inputTextView.frame.size.height - self.inputTextView.textContainerInset.top - self.inputTextView.textContainerInset.bottom);
+    self.inputTextView.text = @"";
 }
 
 #pragma mark - set
@@ -149,7 +136,6 @@
 
 #pragma mark - XMGrowingTextViewDelegate
 - (void)xm_textViewDidBeginEditing:(XMGrowingTextView *)textView {
-    self.inputTextView.text = textView.text;
     if (!self.keyboardButton.hidden) {
         if(self.delegate && [self.delegate respondsToSelector:@selector(inputBarDidTouchKeyboard:)]){
             [self.delegate inputBarDidTouchKeyboard:self];
@@ -224,90 +210,7 @@
     }];
 }
 
-#pragma mark - UITextViewDelegate
-//- (void)textViewDidBeginEditing:(UITextView *)textView {
-//    if (!self.keyboardButton.hidden) {
-//        if(self.delegate && [self.delegate respondsToSelector:@selector(inputBarDidTouchKeyboard:)]){
-//            [self.delegate inputBarDidTouchKeyboard:self];
-//        }
-//    }
-//    self.keyboardButton.hidden = YES;
-//    self.faceButton.hidden = NO;
-//    [self updateInputStatus];
-//}
-
-//- (void)textViewDidChange:(UITextView *)textView {
-//    if(textView.text.length > kTextView_TextView_Input_Count_Max) {
-//        textView.text = [textView.text substringToIndex:kTextView_TextView_Input_Count_Max];
-//    }
-//    [self updateInputStatus];
-//    CGSize size = [_inputTextView sizeThatFits:CGSizeMake(_inputTextView.frame.size.width, kTextView_TextView_Height_Max)];
-////    NSMutableDictionary *attrs = [NSMutableDictionary dictionary];
-////    attrs[NSFontAttributeName] = self.textViewFont;
-////    CGSize maxSize = CGSizeMake((_inputTextView.frame.size.width - 2*10), MAXFLOAT);
-////    CGSize size =  [textView.text boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attrs context:nil].size;
-//
-//    NSLog(@"==>size:%@",NSStringFromCGSize(size));
-//
-//    CGFloat oldHeight = _inputTextView.frame.size.height;
-//    CGFloat newHeight = size.height;
-//    if(newHeight > kTextView_TextView_Height_Max){
-//        newHeight = kTextView_TextView_Height_Max;
-//    }
-//    if(newHeight < kTextView_TextView_Height_Min){
-//        newHeight = kTextView_TextView_Height_Min;
-//    }
-//    if(oldHeight == newHeight){
-//        return;
-//    }
-//    if ((newHeight - oldHeight <4&&  newHeight - oldHeight>0)|| (oldHeight -  newHeight < 4 && oldHeight -  newHeight > 0)) {
-//        return;
-//    }
-//    [UIView animateWithDuration:0.15f animations:^{
-//        CGRect textFrame = self.inputTextView.frame;
-//        textFrame.size.height += newHeight - oldHeight;
-//        self.inputTextView.frame = textFrame;
-//        [self layoutButton:newHeight + 2 * kInputBar_VertMargin];
-//    } completion:^(BOOL finished) {
-//        [self.inputTextView scrollRectToVisible:CGRectMake(0, 0, self.inputTextView.frame.size.width, self.inputTextView.frame.size.height) animated:NO];
-//    }];
-//}
-
-//- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
-//    if([text isEqualToString:@"\n"]){
-//        if (self.delegate && [self.delegate respondsToSelector:@selector(inputBar:didSendText:)]) {
-//            [self.delegate inputBar:self didSendText:self.inputTextView.message];
-//            [self clearInput];
-//        }
-//        return NO;
-//    }
-//
-//    // 删除
-//    if ([text isEqualToString:@""]) {
-//        return [self deleteTextRange:range];
-//    }
-//
-//    // 对输入文字字数限制
-//    if ((self.contentText.length + text.length) > self.inputTextMaxCount) {
-//        return NO;
-//    }
-//
-//    // 输入@
-//    if ([text isEqualToString:XMInputAtStartChar] && (range.length == 0)) {
-//        self.isInputAt = YES;
-//        if (!self.atButton.hidden) {
-//            if (self.delegate && [self.delegate respondsToSelector:@selector(inputBarDidTouchAt:)]) {
-//                [self.delegate inputBarDidTouchAt:self];
-//            }
-//        }
-//        return YES;
-//    }
-//
-//    [self updateInputStatus];
-//
-//    return YES;
-//}
-
+#pragma mark - XMGrowingTextViewDelegate
 // 光标
 - (void)xm_textViewDidChangeSelection:(XMGrowingTextView *)textView {
     NSRange selectedRange = textView.selectedRange;
@@ -402,6 +305,7 @@
         atFrame.origin.x = faceFrame.origin.x - buttonSize.width;
         sendFrame.origin.x = kScreen_Width - buttonSize.width - 7;
     } else{
+        self.inputTextView.textColor = self.textViewColor;
         self.placeholderLabel.hidden = NO;
         boxFrame.size.width = kScreen_Width - 2*kInputBar_HorzMargin;
         if (self.atButton.hidden) {

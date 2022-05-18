@@ -67,7 +67,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface XMGrowingTextView(TextView)
 
-@property (nonatomic,copy)   NSAttributedString *placeholderAttributedText;
+//@property (nonatomic,copy)   NSAttributedString *placeholderAttributedText;
 
 @property (nonatomic,copy)   NSString *text;
 

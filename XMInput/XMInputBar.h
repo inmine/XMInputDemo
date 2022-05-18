@@ -9,7 +9,6 @@
 #import "XMInput.h"
 #import "XMTextView.h"
 #import "XMInputAtCache.h"
-#import "NIMGrowingTextView.h"
 #import "XMGrowingTextView.h"
 
 NS_ASSUME_NONNULL_BEGIN
