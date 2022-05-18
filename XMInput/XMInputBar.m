@@ -87,7 +87,6 @@
     inputTextView.textContainerInset = UIEdgeInsetsMake(9, 10, 9, 10);
     inputTextView.maxNumberOfLines = 3;
     inputTextView.backgroundColor = [UIColor clearColor];
-    inputTextView.backgroundColor = [[UIColor greenColor] colorWithAlphaComponent:0.3];
     [self addSubview:inputTextView];
     self.inputTextView = inputTextView;
 }
