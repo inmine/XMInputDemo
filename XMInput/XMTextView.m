@@ -120,7 +120,9 @@
     NSString *emojiTextPttern = @"\\[[0-9a-zA-Z\\u4e00-\\u9fa5]+\\]";
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:content attributes:self.typingAttributes];
     [attributedString addAttribute:NSFontAttributeName value:self.font range:NSMakeRange(0, content.length)];
-    [attributedString addAttribute:NSForegroundColorAttributeName value:self.textColor range:NSMakeRange(0, content.length)];
+    if (self.textColor) {
+        [attributedString addAttribute:NSForegroundColorAttributeName value:self.textColor range:NSMakeRange(0, content.length)];
+    }
     static NSRegularExpression *regExpress = nil;
     if(regExpress == nil){
         regExpress = [[NSRegularExpression alloc] initWithPattern:emojiTextPttern options:0 error:nil];

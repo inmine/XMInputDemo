@@ -104,6 +104,7 @@
     self.textView.scrollEnabled = NO;
     self.textView.font = [UIFont systemFontOfSize:16];
     self.textView.backgroundColor = [UIColor clearColor];
+    self.textView.textColor = [UIColor blackColor];
     [self addSubview:self.textView];
     
     self.minHeight = self.frame.size.height;

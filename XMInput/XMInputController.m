@@ -68,6 +68,8 @@ typedef NS_ENUM(NSUInteger, InputStatus) {
     inputBar.delegate = self;
     inputBar.atColor = kColorFromRGB(0x5991E0);
     inputBar.atButton.hidden = !self.showAtBtn;
+    inputBar.placeholderColor = kColorFromRGB(0x777777);
+//    inputBar.tintColor = [UIColor redColor];
     [self.view addSubview:inputBar];
     self.inputBar = inputBar;
     

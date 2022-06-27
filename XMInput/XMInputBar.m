@@ -87,6 +87,7 @@
     inputTextView.textContainerInset = UIEdgeInsetsMake(9, 10, 9, 10);
     inputTextView.maxNumberOfLines = 3;
     inputTextView.backgroundColor = [UIColor clearColor];
+    inputTextView.tintColor = self.tintColor;
     [self addSubview:inputTextView];
     self.inputTextView = inputTextView;
 }
@@ -131,6 +132,11 @@
 - (void)setPlaceholderText:(NSString *)placeholderText {
     _placeholderText = placeholderText;
     self.placeholderLabel.text = placeholderText;
+}
+
+- (void)setTintColor:(UIColor *)tintColor {
+    _tintColor = tintColor;
+    self.inputTextView.tintColor = tintColor;
 }
 
 #pragma mark - XMGrowingTextViewDelegate

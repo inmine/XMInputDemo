@@ -157,6 +157,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, copy) NSString *placeholderText;
 
+/** 光标颜色 (默认红色) */
+@property (nonatomic, strong) UIColor *tintColor;
+
 /**
  *  添加表情
  *  用于实现在当前文本输入框中输入 emoji
