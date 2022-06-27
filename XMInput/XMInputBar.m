@@ -194,7 +194,7 @@
 }
 
 - (void)xm_didChangeHeight:(CGFloat)height {
-    NSLog(@"==>height:%lf   %lf",height,self.inputTextView.frame.size.height);
+//    NSLog(@"==>height:%lf   %lf",height,self.inputTextView.frame.size.height);
     CGFloat newHeight = height;
     if(newHeight > kTextView_TextView_Height_Max){
         newHeight = kTextView_TextView_Height_Max;
