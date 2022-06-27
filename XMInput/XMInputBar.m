@@ -84,7 +84,7 @@
     inputTextView.delegate = self;
     inputTextView.textColor = self.textViewColor;
     inputTextView.textView.enablesReturnKeyAutomatically = YES;
-    inputTextView.textContainerInset = UIEdgeInsetsMake(9, 10, 9, 10);
+    inputTextView.textContainerInset = UIEdgeInsetsMake(10, 10, 9, 10);
     inputTextView.maxNumberOfLines = 3;
     inputTextView.backgroundColor = [UIColor clearColor];
     inputTextView.tintColor = self.tintColor;
@@ -109,7 +109,7 @@
     } else {
         self.inputTextView.frame = CGRectMake(self.boxView.frame.origin.x, self.boxView.frame.origin.y, self.boxView.frame.size.width - 2*buttonSize.width - 4, self.boxView.frame.size.height);
     }
-    self.placeholderLabel.frame = CGRectMake(self.inputTextView.frame.origin.x + self.inputTextView.textContainerInset.left + 2, self.inputTextView.frame.origin.y + self.inputTextView.textContainerInset.top - 1, self.inputTextView.frame.size.width - self.inputTextView.textContainerInset.left - self.inputTextView.textContainerInset.right, self.inputTextView.frame.size.height - self.inputTextView.textContainerInset.top - self.inputTextView.textContainerInset.bottom);
+    self.placeholderLabel.frame = CGRectMake(self.inputTextView.frame.origin.x + self.inputTextView.textContainerInset.left + 2, self.inputTextView.frame.origin.y + self.inputTextView.textContainerInset.top, self.inputTextView.frame.size.width - self.inputTextView.textContainerInset.left - self.inputTextView.textContainerInset.right, self.inputTextView.frame.size.height - self.inputTextView.textContainerInset.top - self.inputTextView.textContainerInset.bottom);
     self.inputTextView.text = @"";
 }
 
